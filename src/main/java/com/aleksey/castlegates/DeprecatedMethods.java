@@ -1,3 +1,4 @@
+  
 /**
  * @author Aleksey Terzi
  *
@@ -12,16 +13,16 @@ import com.aleksey.castlegates.types.BlockState;
 
 @SuppressWarnings("deprecation")
 public class DeprecatedMethods {
-	public static Material getMaterial(int materialId) {
-		return Material.getMaterial(materialId);
+	public static Material getMaterial(String i) {
+		return Material.getMaterial(i);
 	}
 
 	public static int getMaterialId(Material material) {
 		return material.getId();
 	}
 
-	public static int getTypeId(Block block) {
-		return block.getTypeId();
+	public static Material getTypeId(Block block) {
+		return block.getType();
 	}
 
 	public static byte getMeta(Block block) {
@@ -29,21 +30,31 @@ public class DeprecatedMethods {
 	}
 
 	public static void setTypeIdAndData(Block block, int type, byte meta) {
-		block.setTypeIdAndData(type, meta, true);
+		((DeprecatedMethods) block).setTypeIdAndData(type, meta, true);
+	}
+
+	private void setTypeIdAndData(int type, byte meta, boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public static void setTypeIdAndData(Block block, Material material, byte meta) {
-		block.setTypeIdAndData(material.getId(), meta, true);
+		((DeprecatedMethods) block).setTypeIdAndData(material.getId(), meta, true);
 	}
 	
 	public static org.bukkit.block.BlockState toCraftBukkit(Block block, BlockState blockState) {
 		org.bukkit.block.BlockState state = block.getState();
-		state.setTypeId(blockState.id);
+		state.setType(blockState.id);
 		state.setRawData(blockState.meta);
 		return state;
 	}
 	
 	public static void commitCraftBukkit(org.bukkit.block.BlockState state) {
 		setTypeIdAndData(state.getBlock(), state.getType(), state.getRawData());
+	}
+
+	public static Material getMaterialId(int parseInt) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

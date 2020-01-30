@@ -306,7 +306,7 @@ public class ConfigManager {
     		if(material == null || material.length() == 0) continue;
 
     		if(Character.isDigit(material.charAt(0))) {
-    			result.add(DeprecatedMethods.getMaterial(Integer.parseInt(material)));
+    			result.add(DeprecatedMethods.getMaterialId(Integer.parseInt(material)));
     		} else {
     			result.add(Material.getMaterial(material.toUpperCase()));
     		}

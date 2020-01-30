@@ -30,9 +30,9 @@ public class Helper {
 
 		return material == Material.AIR
 				|| material == Material.WATER
-				|| material == Material.STATIONARY_WATER
+				//|| material == Material.STATIONARY_WATER
 				|| material == Material.LAVA
-				|| material == Material.STATIONARY_LAVA
+				//|| material == Material.STATIONARY_LAVA
 				;
 	}
 

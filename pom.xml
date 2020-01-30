@@ -6,7 +6,7 @@
   <groupId>com.aleksey</groupId>
   <artifactId>castlegates</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.23-SNAPSHOT</version>
+  <version>1.0.24-SNAPSHOT</version>
   <name>CastleGates</name>
   <url>https://github.com/DevotedMC/CastleGates</url>
   
@@ -29,10 +29,10 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.spigotmc</groupId>
-      <artifactId>spigot-api</artifactId>
-      <version>1.12-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
+           <groupId>org.spigotmc</groupId>
+           <artifactId>spigot-api</artifactId>
+           <version>1.15.1-R0.1-SNAPSHOT</version>
+           <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>vg.civcraft.mc.citadel</groupId>

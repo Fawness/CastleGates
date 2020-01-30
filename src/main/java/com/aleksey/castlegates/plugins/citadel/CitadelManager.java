@@ -170,7 +170,7 @@ public class CitadelManager extends Thread implements ICitadelManager, Runnable 
 	}
 
 	private static ItemStack getItemStack(ReinforcementInfo info) {
-		Material material = DeprecatedMethods.getMaterial(info.material_id);
+		Material material = DeprecatedMethods.getMaterialId(info.material_id);
 		ItemStack stack = new ItemStack(material);
 
 		Helper.setLore(stack, info.lore);

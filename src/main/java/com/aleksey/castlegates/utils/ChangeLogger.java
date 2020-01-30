@@ -97,7 +97,6 @@ public class ChangeLogger {
 				}
 
 				writeLinkGearblocks(linkForUpdate, writer);
-				writeLinkBlocks(linkForUpdate, writer, lineDate, prefix);
 				writeLinkReinforcements(linkForUpdate, writer, lineDate, prefix);
 			} else {
 				writer.print("LINK_DELETE:id=");
@@ -124,29 +123,6 @@ public class ChangeLogger {
 			writer.print(linkForUpdate.gearblock2.getId());
 		} else {
 			writer.print("NONE");
-		}
-
-		writer.println();
-	}
-
-	private static void writeLinkBlocks(LinkForUpdate linkForUpdate, PrintWriter writer, String lineDate, String prefix) {
-		if(linkForUpdate.blocks == null || linkForUpdate.blocks.length == 0) {
-			return;
-		}
-
-		List<BlockState> blocks = DataWorker.deserializeBlocks(linkForUpdate.blocks);
-
-		writer.print(lineDate);
-		writer.print(prefix + ".BLOCKS=");
-
-		for(int i = 0; i < blocks.size(); i++) {
-			if(i > 0) {
-				writer.print(",");
-			}
-
-			BlockState block = blocks.get(i);
-
-			writer.print(block.id + ":" + block.meta);
 		}
 
 		writer.println();

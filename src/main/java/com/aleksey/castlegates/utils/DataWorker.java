@@ -134,11 +134,9 @@ public class DataWorker extends Thread implements Runnable {
 		for(LinkInfo info : linkData) {
 			Gearblock gearblock1 = info.gearblock1_id != null ? gearblocksById.get(info.gearblock1_id) : null;
 			Gearblock gearblock2 = info.gearblock2_id != null ? gearblocksById.get(info.gearblock2_id) : null;
-			List<BlockState> blocks = deserializeBlocks(info.blocks);
 			GearblockLink link = new GearblockLink(gearblock1, gearblock2);
 
 			link.setId(info.link_id);
-			link.setBlocks(blocks);
 
 			if(gearblock1 != null) {
 				gearblock1.setLink(link);
@@ -396,7 +394,6 @@ public class DataWorker extends Thread implements Runnable {
 		if(!link.isRemoved()) {
 			linkForUpdate.gearblock1 = link.getGearblock1();
 			linkForUpdate.gearblock2 = link.getGearblock2();
-			linkForUpdate.blocks = serializeBlocks(link);
 
 			if(link.getBlocks() != null) {
 				linkForUpdate.reinforcements = new ArrayList<ReinforcementInfo>();
@@ -415,35 +412,5 @@ public class DataWorker extends Thread implements Runnable {
 		synchronized(this.changedLinks) {
 			this.changedLinks.put(link, linkForUpdate);
 		}
-	}
-
-	private static byte[] serializeBlocks(GearblockLink link) {
-		if(link.getBlocks() == null) return null;
-
-		byte[] data = new byte[BlockState.BytesPerBlock * link.getBlocks().size()];
-		int offset = 0;
-
-		for(BlockState block : link.getBlocks()) {
-			offset = block.serialize(data, offset);
-		}
-
-		return data;
-	}
-
-	public static List<BlockState> deserializeBlocks(byte[] blockBytes) {
-		if(blockBytes == null || blockBytes.length == 0) return null;
-
-		List<BlockState> blocks = new ArrayList<BlockState>();
-		int offset = 0;
-
-		while(offset < blockBytes.length) {
-			BlockState block = new BlockState();
-
-			offset = BlockState.deserialize(blockBytes, offset, block);
-
-			blocks.add(block);
-		}
-
-		return blocks;
 	}
 }
